@@ -1,4 +1,6 @@
+import { CaseInterceptor, TokenInterceptor } from '@core/interceptors';
 import {
+  HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
 } from '@angular/common/http';
@@ -32,6 +34,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CaseInterceptor,
+      multi: true,
+    },
     CookieService,
   ],
   bootstrap: [AppComponent],
