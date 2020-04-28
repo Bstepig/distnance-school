@@ -1,0 +1,31 @@
+<h2>{{ 'classes.title' | translate }}</h2>
+<ng-container *ngIf="loaded">
+  <ng-container *ngIf="school; else noSchool">
+    <button (click)="addGrade()" class="btn--fill">
+      {{ 'common.add' | translate }}
+    </button>
+    <div class="classes">
+      <div class="card grade" *ngFor="let grade of classes">
+        <a [routerLink]="grade.id" class="grade_edit fas fa-cogs"></a>
+        <input
+          (blur)="updateGrade(grade)"
+          class="entry-year"
+          type="number"
+          [(ngModel)]="grade.entryYear"
+          min="1"
+        />
+        <input
+          (blur)="updateGrade(grade)"
+          class="name"
+          type="text"
+          [(ngModel)]="grade.name"
+          max_length="20"
+        />
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noSchool>
+    {{ 'common.noSchool' | translate }}
+    <a routerLink="/profile">{{ 'common.specify' | translate }</a>
+  </ng-template>
+</ng-container>

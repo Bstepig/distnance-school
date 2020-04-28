@@ -24,6 +24,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../schedule/schedule.module').then((m) => m.ScheduleModule),
       },
+      {
+        path: 'classes',
+        loadChildren: () =>
+          import('../classes/classes.module').then((m) => m.ClassesModule),
+        canActivate: [DirectorGuard],
+      },
+      {
         path: 'users',
         loadChildren: () =>
           import('../users/users.module').then((m) => m.UsersModule),
