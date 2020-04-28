@@ -10,6 +10,12 @@ const routes: Routes = [
       import('./pages/welcome/welcome.module').then((m) => m.WelcomeModule),
     canDeactivate: [AuthGuard],
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/mgt/mgt.module').then((m) => m.MgtModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
