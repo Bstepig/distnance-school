@@ -1,0 +1,15 @@
+<h2>{{ 'schedule.title' | translate }}</h2>
+<div class="table">
+  <div class="day" *ngFor="let day of schedule.days">
+    <h4 class="week-day">{{ 'schedule.' + day.day | translate }}</h4>
+    <div *ngFor="let lesson of day.lessons" class="card lesson">
+      <ng-container *ngIf="lesson">
+        <div class="lesson_title">{{ lesson.title }}</div>
+        <div class="teacher">
+          <div class="teacher_avatar" [bgUrl]="lesson.teacher.avatar"></div>
+          <div class="teacher_name">{{ lesson.teacher.fullName | short }}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

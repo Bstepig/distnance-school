@@ -1,0 +1,35 @@
+.table {
+  display: flex;
+  overflow: visible;
+}
+
+.day {
+  margin-right: 20px;
+}
+
+.week-day {
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+
+.lesson_title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.teacher {
+  display: flex;
+  align-items: center;
+}
+
+.teacher_avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background: var(--blue2) center / cover no-repeat;
+  margin-right: 8px;
+}
+
+.teacher_name {
+  font-size: 0.8em;
+}
