@@ -1,0 +1,115 @@
+.header {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: stretch;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  background: var(--blue2) center / cover no-repeat;
+  box-shadow: var(--shadow);
+  margin-right: 30px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover .avatar-overlay {
+    opacity: 1;
+  }
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #0005;
+  color: white;
+  opacity: 0;
+  transition: 0.1s;
+  font-size: 0.8em;
+  user-select: none;
+}
+
+.header_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.name {
+  margin-bottom: 10px;
+}
+
+.status {
+  font-size: 1.1em;
+  flex: 1;
+}
+
+.header_buttons {
+  align-self: flex-end;
+  justify-self: self-end;
+}
+
+.edit-link {
+  margin-right: 10px;
+}
+
+/**
+ * Table
+ **/
+
+.line {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.label {
+  flex: 1;
+  font-weight: 500;
+  color: var(--grey2);
+}
+
+.value {
+  flex: 3;
+  font-weight: 500;
+}
+
+.container-block {
+  margin-bottom: 20px;
+}
+
+.schools {
+  padding-top: 20px;
+}
+
+.school {
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: var(--blue0);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin-right: 20px;
+}

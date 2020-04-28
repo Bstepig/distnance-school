@@ -1,0 +1,168 @@
+<h2>{{ 'profile.title' | translate }}</h2>
+<div *ngIf="user" class="container-block">
+  <div class="header">
+    <div class="avatar" [bgUrl]="user.avatar">
+      <div (click)="file.click()" class="avatar-overlay">
+        {{ 'profile.loadPhoto' | translate }}
+      </div>
+    </div>
+    <input
+      (change)="load($event.target.files[0])"
+      style="display: none;"
+      #file
+      type="file"
+    />
+    <div class="header_right">
+      <h3 class="name">
+        {{ fullName }}
+      </h3>
+      <div class="status">
+        {{ 'userTypes.' + user.userType | translate }}
+        <small
+          ><i *ngIf="d && !d.isVerified">{{
+            'profile.notVerified' | translate
+          }}</i></small
+        >
+      </div>
+      <div class="header_buttons">
+        <a [routerLink]="editLink" class="edit-link">
+          <button (click)="update()" class="edit btn--fill">
+            {{ (isEdit ? 'profile.save' : 'profile.edit') | translate }}
+          </button>
+        </a>
+        <button *ngIf="!isEdit" (click)="logout()" class="btn--red btn--fill">
+          {{ 'profile.logout' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isEdit" class="info">
+    <div class="line">
+      <div class="label">{{ 'profile.lastName' | translate }}</div>
+      <div class="value">{{ user.lastName }}</div>
+    </div>
+    <div class="line">
+      <div class="label">{{ 'profile.firstName' | translate }}</div>
+      <div class="value">{{ user.firstName }}</div>
+    </div>
+    <div class="line">
+      <div class="label">{{ 'profile.middleName' | translate }}</div>
+      <div class="value">{{ user.middleName }}</div>
+    </div>
+  </div>
+  <form [formGroup]="form" *ngIf="isEdit">
+    <div class="info">
+      <div class="line">
+        <div class="label">{{ 'profile.lastName' | translate }}</div>
+        <input type="text" formControlName="lastName" class="value" />
+      </div>
+      <div class="line">
+        <div class="label">{{ 'profile.firstName' | translate }}</div>
+        <input type="text" formControlName="firstName" class="value" />
+      </div>
+      <div class="line">
+        <div class="label">{{ 'profile.middleName' | translate }}</div>
+        <input type="text" formControlName="middleName" class="value" />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-block">
+  <h3>{{ 'profile.school' | translate }}</h3>
+
+  <ng-container *ngIf="d && !d.school">
+    <ng-container *ngIf="userType === 'D'; else s">
+      {{ 'common.noSchool' | translate }}
+    </ng-container>
+    <ng-template #s>
+      {{ 'profile.selectSchool' | translate }}
+      <div class="schools cards">
+        <div
+          class="card school"
+          *ngFor="let school of $schoolList | async"
+          (click)="chooseSchool(school)"
+        >
+          {{ school.shortName }}
+          {{ school.location }}
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="d && d.school && userType !== 'D'">
+    <div *ngIf="school">
+      <div>{{ school.fullName }}</div>
+      <div>{{ school.shortName }}</div>
+      <div>{{ school.location }}</div>
+    </div>
+    <button class="btn--red btn--fill" (click)="removeSchool()">
+      {{ 'profile.detachSchool' | translate }}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="userType === 'D'">
+    <form class="info" [formGroup]="schoolForm">
+      <div class="line">
+        <div class="label">{{ 'profile.fullName' | translate }}</div>
+        <input type="text" formControlName="fullName" class="value" />
+      </div>
+      <div class="line">
+        <div class="label">{{ 'profile.shortName' | translate }}</div>
+        <input type="text" formControlName="shortName" class="value" />
+      </div>
+      <div class="line">
+        <div class="label">{{ 'profile.location' | translate }}</div>
+        <input type="text" formControlName="location" class="value" />
+      </div>
+      <button *ngIf="d && d.school" (click)="updateSchool()">
+        {{ 'profile.save' | translate }}
+      </button>
+      <button *ngIf="d && !d.school" (click)="createSchool()">
+        {{ 'profile.save' | translate }}
+      </button>
+    </form>
+  </ng-container>
+
+  <!-- <ng-container [ngSwitch]="userType">
+    <ng-container *ngSwitchCase="'D'">
+      <form [formGroup]="schoolForm">
+        <div class="info">
+          <div class="line">
+            <div class="label">{{ 'profile.fullName' | translate }}</div>
+            <input type="text" formControlName="fullName" class="value" />
+          </div>
+          <div class="line">
+            <div class="label">{{ 'profile.shortName' | translate }}</div>
+            <input type="text" formControlName="shortName" class="value" />
+          </div>
+          <div class="line">
+            <div class="label">{{ 'profile.location' | translate }}</div>
+            <input type="text" formControlName="location" class="value" />
+          </div>
+        </div>
+      </form>
+    </ng-container>
+  </ng-container> -->
+</div>
+<div class="container-block" *ngIf="d && d.school && userType === 'S'">
+  <h3>{{ 'profile.grade' | translate }}</h3>
+  <ng-container *ngIf="d.grade; else noGrade">
+    <div *ngIf="grade">
+      <div>{{ grade.entryYear }} {{ grade.name }}</div>
+    </div>
+    <button class="btn--red btn--fill" (click)="removeGrade()">
+      {{ 'profile.detachGrade' | translate }}
+    </button>
+  </ng-container>
+  <ng-template #noGrade>
+    {{ 'profile.selectGrade' | translate }}
+    <div class="schools cards">
+      <div
+        class="card grade"
+        *ngFor="let grade of $gradeList | async"
+        (click)="chooseGrade(grade)"
+      >
+        {{ grade.entryYear }}
+        {{ grade.name }}
+      </div>
+    </div>
+  </ng-template>
+</div>
