@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+  <h2>{{ 'login.title' | translate }}</h2>
+  <label for="username">{{ 'login.username' | translate }}</label>
+  <input
+    type="text"
+    formControlName="username"
+    [placeholder]="'login.placeholder.username' | translate"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="username.invalid && (username.dirty || username.touched)"
+    >
+      <div *ngIf="username.errors.required">
+        {{ 'signUp.validation.username.required' | translate }}
+      </div>
+    </ng-container>
+  </div>
+  <label for="password">{{ 'login.password' | translate }}</label>
+  <input
+    type="password"
+    formControlName="password"
+    [placeholder]="'login.placeholder.password' | translate"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+    >
+      <div *ngIf="password.errors.required">
+        {{ 'signUp.validation.password.required' | translate }}
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="isError" class="error">
+    {{ 'login.' + errorCode | translate }}
+  </div>
+  <div class="checkbox"></div>
+  <div class="buttons">
+    <button [disabled]="form.invalid" class="btn--fill">
+      {{ 'login.signIn' | translate }}
+    </button>
+    <a routerLink="/signup"
+      ><button type="button">{{ 'login.signUp' | translate }}</button></a
+    >
+  </div>
+</form>

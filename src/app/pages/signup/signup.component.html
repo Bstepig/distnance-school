@@ -1,0 +1,98 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+  <h2>{{ 'signUp.title' | translate }}</h2>
+  <label for="username">{{ 'signUp.username' | translate }}</label>
+  <input
+    type="text"
+    formControlName="username"
+    [placeholder]="'signUp.placeholder.username' | translate"
+    autocomplete="username"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="username.invalid && (username.dirty || username.touched)"
+    >
+      <div *ngIf="username.errors.required">
+        {{ 'signUp.validation.username.required' | translate }}
+      </div>
+      <div *ngIf="username.errors.minlength">
+        {{ 'signUp.validation.username.minLength' | translate }}
+      </div>
+      <div *ngIf="username.errors.usernameUsed">
+        {{ 'signUp.validation.username.used' | translate: form.value }}
+      </div>
+    </ng-container>
+  </div>
+  <label for="firstName">{{ 'signUp.firstName' | translate }}</label>
+  <input
+    type="text"
+    formControlName="firstName"
+    [placeholder]="'signUp.placeholder.firstName' | translate"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+    >
+      <div *ngIf="firstName.errors.required">
+        {{ 'signUp.validation.firstName.required' | translate }}
+      </div>
+    </ng-container>
+  </div>
+  <label for="lastName">{{ 'signUp.lastName' | translate }}</label>
+  <input
+    type="text"
+    formControlName="lastName"
+    [placeholder]="'signUp.placeholder.lastName' | translate"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+    >
+      <div *ngIf="lastName.errors.required">
+        {{ 'signUp.validation.lastName.required' | translate }}
+      </div>
+    </ng-container>
+  </div>
+  <label for="password">{{ 'signUp.password' | translate }}</label>
+  <input
+    type="password"
+    formControlName="password"
+    [placeholder]="'signUp.placeholder.password' | translate"
+  />
+  <div class="alert">
+    <ng-container
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+    >
+      <div *ngIf="password.errors.required">
+        {{ 'signUp.validation.password.required' | translate }}
+      </div>
+      <div *ngIf="password.errors.minlength">
+        {{ 'signUp.validation.password.minLength' | translate }}
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="isError" class="error">
+    {{ 'signUp.error' | translate }}
+  </div>
+  <div class="user-type">
+    <div>
+      <input id="student" formControlName="userType" type="radio" value="S" />
+      <label for="student">{{ 'userTypes.student' | translate }} </label>
+    </div>
+    <div>
+      <input id="teacher" formControlName="userType" type="radio" value="T" />
+      <label for="teacher">{{ 'userTypes.teacher' | translate }} </label>
+    </div>
+    <div>
+      <input id="director" formControlName="userType" type="radio" value="D" />
+      <label for="director">{{ 'userTypes.director' | translate }} </label>
+    </div>
+  </div>
+  <div class="buttons">
+    <button [disabled]="form.invalid" class="btn--fill">
+      {{ 'signUp.signUp' | translate }}
+    </button>
+    <a routerLink="/login"
+      ><button type="button">{{ 'signUp.signIn' | translate }}</button></a
+    >
+  </div>
+</form>

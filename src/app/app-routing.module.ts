@@ -1,9 +1,15 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from '@core/guards';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-import { RouterModule, Routes } from '@angular/router';
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/welcome/welcome.module').then((m) => m.WelcomeModule),
+    canDeactivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
