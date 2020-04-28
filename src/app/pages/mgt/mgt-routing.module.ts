@@ -25,6 +25,11 @@ const routes: Routes = [
           import('../schedule/schedule.module').then((m) => m.ScheduleModule),
       },
       {
+        path: 'lessons',
+        loadChildren: () =>
+          import('../lessons/lessons.module').then((m) => m.LessonsModule),
+      },
+      {
         path: 'classes',
         loadChildren: () =>
           import('../classes/classes.module').then((m) => m.ClassesModule),
