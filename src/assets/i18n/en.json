@@ -1,0 +1,153 @@
+{
+  "common": {
+    "changeLanguage": "Change language",
+    "loading": "Loading",
+    "download": "Download",
+    "noSchool": "No school specified",
+    "noGrade": "No grade specified",
+    "specify": "Specify",
+    "add": "Add",
+    "send": "Send"
+  },
+  "langs": {
+    "ru": "РУ",
+    "en": "EN"
+  },
+  "userTypes": {
+    "student": "Student",
+    "teacher": "Teacher",
+    "director": "Director",
+    "parent": "Parent",
+    "admin": "Administrator",
+    "S": "Student",
+    "T": "Teacher",
+    "D": "Director",
+    "P": "Parent",
+    "A": "Administrator"
+  },
+  "errors": {
+    "401": "Authorization required"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "placeholder": {
+      "username": "",
+      "password": "••••••••"
+    },
+    "signIn": "Sign in",
+    "signUp": "Registration",
+    "401": "Invalid username and/or password",
+    "0": "Unhandled error"
+  },
+  "signUp": {
+    "title": "Registration",
+    "username": "Username",
+    "firstName": "Name",
+    "lastName": "Last Name",
+    "password": "Password",
+    "error": "Error",
+    "placeholder": {
+      "username": "",
+      "password": "••••••••",
+      "firstName": "John",
+      "lastName": "Smith"
+    },
+    "validation": {
+      "username": {
+        "required": "Username required",
+        "minLength": "Username must be at least 3 characters",
+        "used": "Username {{username}} is used"
+      },
+      "firstName": {
+        "required": "Name required"
+      },
+      "lastName": {
+        "required": "Last name required"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 8 characters"
+      }
+    },
+    "signIn": "Sign in",
+    "signUp": "Registration"
+  },
+  "tasks": {
+    "title": "Assignments",
+    "createTask": "Create a new task",
+    "newTask": "A new task",
+    "noTask": "No task"
+  },
+  "task": {
+    "attachment": "Attachment"
+  },
+  "profile": {
+    "title": "Profile",
+    "username": "Username",
+    "firstName": "Name",
+    "lastName": "Last Name",
+    "middleName": "Middle Name",
+    "password": "Password",
+    "edit": "Edit",
+    "save": "Save",
+    "logout": "Logout",
+    "school": "School",
+    "schoolNull": "School not specifyd",
+    "fullName": "Full name",
+    "shortName": "Short name",
+    "location": "Location",
+    "grade": "Grade",
+    "notVerified": "Not verified",
+    "detachSchool": "Detach",
+    "detachGrade": "Detach",
+    "selectSchool": "Select the school",
+    "selectGrade": "Select the grade",
+    "loadPhoto": "Load a photo"
+  },
+  "subjects": {
+    "informatics": "Informatics",
+    "geography": "Geography",
+    "biology": "Biology",
+    "lifeSafety": "Life safety",
+    "music": "Music",
+    "literature": "Literature",
+    "physics": "Physics",
+    "pe": "PE",
+    "socialStudies": "Social studies",
+    "history": "History",
+    "english": "English",
+    "german": "German",
+    "tatar": "Tatar",
+    "russian": "Russian",
+    "chemistry": "Chemistry",
+    "algebra": "Algebra",
+    "geometry": "Geometry"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  },
+  "lessons": {
+    "title": "Lessons"
+  },
+  "classes": {
+    "title": "Classes"
+  },
+  "users": {
+    "title": "Users",
+    "all": "All",
+    "S": "Students",
+    "T": "Teachers",
+    "D": "Directors",
+    "P": "Parents",
+    "A": "Administrators"
+  }
+}
