@@ -1,0 +1,34 @@
+.header {
+  margin-bottom: 20px;
+}
+
+.result_text {
+  min-height: 300px;
+  margin-bottom: 30px;
+}
+
+.result_footer {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.result_footer_tools {
+  align-items: center;
+  display: flex;
+  margin-right: 30px;
+}
+
+.result_btn {
+  color: var(--blue4);
+  padding: 10px 20px;
+  border: none;
+  transition: 0.2s;
+  &:hover {
+    background: var(--blue2);
+  }
+}
+
+.result_text {
+  font-size: 1.2em;
+}

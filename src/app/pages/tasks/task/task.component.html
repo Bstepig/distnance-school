@@ -1,0 +1,86 @@
+<ng-container *ngIf="error"> Ошибка! </ng-container>
+<ng-container *ngIf="loading && !error"> Загрузка... </ng-container>
+<ng-container *ngIf="!loading && !error">
+  <header>
+    <a routerLink="/tasks" class="go-back fas fa-arrow-left"></a>
+    <div *ngIf="teacher" class="companion">
+      <div class="companion_avatar"></div>
+      <div class="companion_name">
+        {{ teacher.lastName }} {{ teacher.firstName }} {{ teacher.middleName }}
+      </div>
+    </div>
+  </header>
+
+  <h2>
+    {{ task.title }}
+  </h2>
+
+  <div class="container-block" [innerHTML]="task.body"></div>
+
+  <div class="attachments">
+    <div
+      class="card attachment"
+      *ngFor="let attachment of task.attachments; index as i"
+    >
+      <a [href]="attachment.file" target="_blank">
+        <button class="btn--fill" type="submit">
+          {{ 'task.attachment' | translate }} {{ i + 1 }}
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div class="messages">
+    <div
+      *ngFor="let message of task.messages"
+      class="message"
+      [ngClass]="{ 'message--self': isSelfMessage(message) }"
+    >
+      <div class="message_body">
+        {{ message.body }}
+      </div>
+      <div class="message_time">{{ message.time | date: 'HH:mm' }}</div>
+    </div>
+  </div>
+
+  <form (ngSubmit)="send()" class="result">
+    <h4>Впишите ответ</h4>
+    <div
+      (input)="updateBody($event.target.innerHTML)"
+      (paste)="paste($event)"
+      class="result_text"
+      contenteditable="true"
+    ></div>
+    <div class="result_footer">
+      <div class="result_footer_tools">
+        <button
+          (click)="undo()"
+          type="button"
+          class="result_btn fas fa-undo"
+        ></button>
+        <button
+          (click)="redo()"
+          type="button"
+          class="result_btn fas fa-redo"
+        ></button>
+        <button
+          (click)="bold()"
+          type="button"
+          class="result_btn fas fa-bold"
+        ></button>
+        <button
+          (click)="italic()"
+          type="button"
+          class="result_btn fas fa-italic"
+        ></button>
+        <button
+          (click)="underline()"
+          type="button"
+          class="result_btn fas fa-underline"
+        ></button>
+        <button type="button" class="result_btn fas fa-paperclip"></button>
+      </div>
+      <button class="btn--fill">Отправить</button>
+    </div>
+  </form>
+</ng-container>

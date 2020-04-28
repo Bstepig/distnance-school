@@ -1,0 +1,38 @@
+<h2>{{ 'tasks.title' | translate }}</h2>
+<a routerLink="./create">
+  <button *ngIf="canCreateTask" class="create-task btn--fill">
+    {{ 'tasks.createTask' | translate }}
+  </button></a
+>
+<div *ngIf="userType === 'S'" class="tasks">
+  <div class="loading" *ngIf="loading; else tks">
+    {{ 'common.loading' | translate }}...
+  </div>
+  <ng-template #tks>
+    <ng-container *ngIf="noSchool">
+      {{ 'common.noSchool' | translate }}
+      <a routerLink="/profile"
+        ><button class="btn--fill">
+          {{ 'common.specify' | translate }}
+        </button></a
+      >
+    </ng-container>
+    <ng-container *ngIf="noGrade">
+      {{ 'common.noGrade' | translate }}
+      <a routerLink="/profile"
+        ><button class="btn--fill">
+          {{ 'common.specify' | translate }}
+        </button></a
+      >
+    </ng-container>
+    <ng-container *ngIf="!noGrade && !noSchool && tasks.length">
+      <a [routerLink]="task.id" class="task" *ngFor="let task of tasks">
+        <div class="task_subject">{{ task.subject }}</div>
+        <div class="task_title">{{ task.title }}</div>
+      </a>
+    </ng-container>
+    <ng-container *ngIf="!noGrade && !noSchool && !tasks.length">{{
+      'tasks.noTask' | translate
+    }}</ng-container>
+  </ng-template>
+</div>

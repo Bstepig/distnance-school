@@ -16,6 +16,10 @@ const routes: Routes = [
       import('./pages/mgt/mgt.module').then((m) => m.MgtModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: '**',
+    redirectTo: '/tasks',
+  },
 ];
 
 @NgModule({

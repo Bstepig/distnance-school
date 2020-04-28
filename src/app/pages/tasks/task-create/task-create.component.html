@@ -1,0 +1,69 @@
+<h2>{{ 'tasks.newTask' | translate }}</h2>
+
+<ng-container *ngIf="loaded">
+  <form *ngIf="!noSchool" (ngSubmit)="send()" class="result container-block">
+    <div class="header">
+      <input
+        name="title"
+        type="text"
+        [(ngModel)]="task.title"
+        placeholder="Название"
+      />
+      <select name="grade" *ngIf="classes" [(ngModel)]="task.grade">
+        <option *ngFor="let grade of classes" [value]="grade.id"
+          >{{ grade.entryYear }} {{ grade.name }}</option
+        >
+      </select>
+    </div>
+    <div
+      (input)="updateBody($event.target.innerHTML)"
+      (paste)="paste($event)"
+      class="result_text"
+      contenteditable="true"
+    ></div>
+    <div class="result_footer">
+      <div class="result_footer_tools">
+        <button
+          (click)="undo()"
+          type="button"
+          class="result_btn fas fa-undo"
+        ></button>
+        <button
+          (click)="redo()"
+          type="button"
+          class="result_btn fas fa-redo"
+        ></button>
+        <button
+          (click)="bold()"
+          type="button"
+          class="result_btn fas fa-bold"
+        ></button>
+        <button
+          (click)="italic()"
+          type="button"
+          class="result_btn fas fa-italic"
+        ></button>
+        <button
+          (click)="underline()"
+          type="button"
+          class="result_btn fas fa-underline"
+        ></button>
+        <button
+          (click)="file.click()"
+          type="button"
+          class="result_btn fas fa-paperclip"
+        ></button>
+        <input
+          (change)="load($event.target.files[0])"
+          style="display: none;"
+          #file
+          type="file"
+        />
+      </div>
+      <button class="btn--fill">{{ 'common.send' | translate }}</button>
+    </div>
+  </form>
+  <ng-container *ngIf="noSchool">
+    {{ 'common.noSchool' | translate }}
+  </ng-container>
+</ng-container>

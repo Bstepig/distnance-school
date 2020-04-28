@@ -10,6 +10,10 @@ const routes: Routes = [
     component: MgtComponent,
     children: [
       {
+        path: 'tasks',
+        loadChildren: () =>
+          import('../tasks/tasks.module').then((m) => m.TasksModule),
+      },
       {
         path: 'profile',
         loadChildren: () =>
