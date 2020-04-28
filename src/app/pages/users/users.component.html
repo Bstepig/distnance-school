@@ -1,0 +1,50 @@
+<h2>{{ 'users.title' | translate }}</h2>
+<div *ngIf="!noSchool" class="container-block tools">
+  <div class="user-type">
+    <div>
+      <input
+        id="all"
+        (input)="getAll()"
+        type="radio"
+        name="user_type"
+        checked
+      />
+      <label for="all"> {{ 'users.all' | translate }}</label>
+    </div>
+    <div>
+      <input id="S" (input)="getStudents()" type="radio" name="user_type" />
+      <label for="S"> {{ 'users.S' | translate }}</label>
+    </div>
+    <div>
+      <input id="T" (input)="getTeachers()" type="radio" name="user_type" />
+      <label for="T"> {{ 'users.T' | translate }}</label>
+    </div>
+    <div>
+      <input id="D" (input)="getDirectors()" type="radio" name="user_type" />
+      <label for="D"> {{ 'users.D' | translate }}</label>
+    </div>
+  </div>
+  <div class="search">
+    Поиск <input type="text" [(ngModel)]="config.search" (input)="search()" />
+  </div>
+</div>
+<div *ngIf="loading && !noSchool" class="loading">
+  {{ 'common.loading' | translate }}...
+</div>
+<div *ngIf="noSchool" class="loading">
+  {{ 'common.noSchool' | translate }}
+  <a routerLink="/profile"
+    ><button>{{ 'common.specify' | translate }}</button></a
+  >
+</div>
+<div *ngIf="!loading && !noSchool" class="container-block users">
+  <div class="user" *ngFor="let user of users">
+    <div class="user_avatar" [bgUrl]="user.avatar"></div>
+    <div class="user_name">
+      {{ user.lastName }} {{ user.firstName }} {{ user.middleName }}
+    </div>
+    <div class="user_type">
+      {{ 'userTypes.' + user.userType | translate }}
+    </div>
+  </div>
+</div>

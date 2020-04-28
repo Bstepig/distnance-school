@@ -1,0 +1,22 @@
+.user {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.user_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  background: var(--blue2) center / cover no-repeat;
+}
+
+.user_name {
+  flex: 1;
+}
+
+.user_type {
+  color: var(--blue4);
+  flex: 0 180px;
+}
